@@ -10,10 +10,14 @@ h2{
 
     
 }
+h3{
+    size: 1px;
+    color: blue;
+}
 
 
 img{
-    width: 200px;
+    width: 400px;
     
 }
 a{
