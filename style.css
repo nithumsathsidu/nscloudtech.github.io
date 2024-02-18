@@ -1,6 +1,25 @@
-h1.nithum{
+h2.nithum{
     color : blue;
-    font-size : 50px;
+    font-size : 40px;
     font-family : Arial;
     
+}
+h2{
+    size: 1px;
+    color: blue;
+
+    
+}
+
+
+img{
+    width: 200px;
+    
+}
+a{
+    font-size: 20px;
+
+}
+h1{
+    color: green;
 }
