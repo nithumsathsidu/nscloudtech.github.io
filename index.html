@@ -45,17 +45,16 @@
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-          authDomain: "nscloudtech.firebaseapp.com",
-          projectId: "nscloudtech",
-          storageBucket: "nscloudtech.appspot.com",
-          messagingSenderId: "313047332528",
-          appId: "1:313047332528:web:95f97942bf9d54da96ed75",
-          measurementId: "G-G8RMXSBTXS"
-
+            authDomain: "nscloudtech.firebaseapp.com",
+            projectId: "nscloudtech",
+            storageBucket: "nscloudtech.appspot.com",
+            messagingSenderId: "313047332528",
+            appId: "1:313047332528:web:95f97942bf9d54da96ed75",
+            measurementId: "G-G8RMXSBTXS"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
+    
         document.getElementById('signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var email = document.getElementById('email').value;
