@@ -1,63 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page of NSCloudtech Official Website</title>
-    <link rel="stylesheet"
-  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+    <title>Signup Page</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
+            authDomain: "nscloudtech.firebaseapp.com",
+            projectId: "nscloudtech",
+            storageBucket: "nscloudtech.appspot.com",
+            messagingSenderId: "313047332528",
+            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
+            measurementId: "G-725YRQCWG7"
+        };
 
-<link rel="stylesheet" href="css.css">
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
 
+        window.onload = function() {
+            document.getElementById('signup-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed in 
+                        var user = userCredential.user;
+                        // ...
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // ..
+                    });
+            });
+        };
+    </script>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">devoloper <span>X.</span></a>
-        <div class="bx bx-menu" id="menu-logo"></div>
-        <ul class="navlist">
-            <li><a class="Home" href="#Home">Home</a></li>
-            <li><a class="Home" href="#about">About</a></li>
-            <li><a class="Home" href="#services">Services</a></li>
-            <li><a class="Home" href="#portfoli0">Portfolio</a></li>
-            <li><a class="Home" href="#contact">Contact</a></li>    
-
-        </ul>
-        
-        <div class="top-btnn">
-            <a href="#" class="h-btn">Contact Me</a>
-
-        </div>
-
-
-    </header>
-    <section class="hero">
-        <div class="main-content">
-            <h4>Hi, There!</h4>
-            <h1>I'm <span>Nithum Sathsidu</span> </h1>
-            <p>I'm a student that study in D.S Senanayake College. My age is 13.You can hire me in <a href="https://www.upwork.com">Upwork</a>. My Ambition is to be a software Engineer one day.</p>
-            <div class="social">
-                <a href="https://github.com/nithumsathsidu"><i class="ri-github-fill"></i></a>
-                <a href="https://www.youtube.com/@nithumsathsidu6838"><i class="ri-youtube-fill"></i></a>
-            </div>
-
-            <div class="main-btn">
-                <a href="https://www.upwork.com/freelancers/~01d301b245b5a873a2" class="btn">Hire Me</a>
-                <a href="#" class="btn btn2">Downlord CV</a>
-            </div>
-        </div>
-
-
-
-
-    </section>
-    <script src="JS/Javascript.js"></script>
+    <h2>Signup</h2>
+    <form id="signup-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
