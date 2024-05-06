@@ -52,10 +52,15 @@
         input[type="submit"]:hover {
             background: #0056b3;
         }
-        p {
-            margin-top: 20px;
-            text-align: center;
-        }
+      p{
+            
+            text-align: end;
+            font-size: 20px;
+            margin-top: 10px;
+            position: relative;
+            bottom: 10px;
+            display: inline-block;
+      }
 
         a {
             color: #007BFF;
@@ -64,6 +69,10 @@
 
         a:hover {
             text-decoration: underline;
+        }
+        .bottom-text {
+            position: absolute;
+            bottom: 0;
         }
     </style>
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
@@ -106,13 +115,18 @@
 </head>
 
 <body>
-    <form id="login-form">
+        <form id="login-form">
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" required><br>
         <input type="submit" value="Login">
     </form>
+
+    <!-- Place the text inside a container with the "bottom-text" class -->
+    <div class="bottom-text">
+        <p>Don't have an account? Click <a href="index.html">Here</a> To Sign Up</p>
+    </div>
 
     <script>
         // Initialize Firebase
