@@ -94,20 +94,20 @@
             var errorMessage = error.message;
             if (errorCode === 'auth/invalid-email') 
             {
-                console.error('Invalid email');
+                alert('Error: Invalid email');
             } 
             else if (errorCode === 'auth/wrong-password') 
             {
-                console.error('Invalid password');
+                alert('Error: Invalid password');
             } 
             else 
             {
-                console.error(errorMessage);
+                alert('Error: '+ errorMessage);
             }
     })
                     var errorMessage = error.message;
                   
-                    alert('Error: ' + errorMessage);
+                    //alert('Error: ' + errorMessage);
                 });
     </script>
 </body>
