@@ -88,15 +88,16 @@
                     // ...
                 })
                 .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    if (errorCode === 'auth/invalid-email') {
-                        errorMessage = 'Invalid email';
-                    } else if (errorCode === 'auth/wrong-password') {
-                        errorMessage = 'Invalid password';
-                    }
-                    alert('Error: ' + errorMessage);
-                });
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode === 'auth/invalid-email') {
+        errorMessage = 'Invalid email';
+    } else if (errorCode === 'auth/wrong-password') {
+        errorMessage = 'Invalid password';
+    }
+    // You might want to do something with the errorMessage here
+    console.error(errorMessage);
+})
         });
     </script>
 </body>
