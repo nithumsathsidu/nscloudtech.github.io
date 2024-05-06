@@ -87,28 +87,13 @@
                     alert('Logged in successfully');
                     // ...
                 })
-// Assuming there's a promise before this
-        .catch((error) => 
-    {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/invalid-email') 
-            {
-                alert('Error: Invalid email');
-            } 
-            else if (errorCode === 'auth/wrong-password') 
-            {
-                alert('Error: Invalid password');
-            } 
-            //else 
-            //{
-             //   alert('Error: '+ errorMessage);
-           // }
-    })
+                .catch((error) => {
+                    var errorCode = error.code;
                     var errorMessage = error.message;
                   
-                    //alert('Error: ' + errorMessage);
+                    alert('invade email or password');
                 });
+        });
     </script>
 </body>
 </html>
