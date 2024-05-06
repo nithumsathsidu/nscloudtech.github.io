@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        form {
+            width: 300px;
+            background: #ffffff;
+            padding: 30px;
+            padding-right: 55px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            border: none;
+            background: #f2f2f2;
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 5px;
+            color: #fff;
+            background: #007BFF;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+      p{
+            
+            text-align: end;
+            font-size: 20px;
+            margin-top: 10px;
+            position: relative;
+            bottom: 10px;
+            display: inline-block;
+      }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .bottom-text {
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
+            authDomain: "nscloudtech.firebaseapp.com",
+            projectId: "nscloudtech",
+            storageBucket: "nscloudtech.appspot.com",
+            messagingSenderId: "313047332528",
+            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
+            measurementId: "G-725YRQCWG7"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+</head>
+
+<body>
+        <form id="login-form">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <!-- Place the text inside a container with the "bottom-text" class -->
+    <div class="bottom-text">
+        <p>Don't have an account? Click <a href="index.html">Here</a> To Sign Up</p>
+    </div>
+
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
+
+            authDomain: "nscloudtech.firebaseapp.com",
+
+            projectId: "nscloudtech",
+
+            storageBucket: "nscloudtech.appspot.com",
+
+            messagingSenderId: "313047332528",
+
+            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
+
+            measurementId: "G-725YRQCWG7"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get elements
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginForm = document.getElementById('login-form');
+
+        // Add login event
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const auth = firebase.auth();
+
+            // Sign in
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    alert('Logged in successfully');
+                    emailInput.value = ''; // Clear email input
+                    passwordInput.value = ''; // Clear password input
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+
+                    alert('Invalid email or password');
+                });
+        });
+    </script>
+</body>
+
+</html>
