@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Page</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
+            authDomain: "nscloudtech.firebaseapp.com",
+            projectId: "nscloudtech",
+            storageBucket: "nscloudtech",
+            messagingSenderId: "313047332528",
+            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
+            measurementId: "G-725YRQCWG7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+
+        //window.onload = function() {
+           // document.getElementById('signup-form').addEventListener('submit', function(e) {
+               // e.preventDefault();
+                //var email = document.getElementById('email').value;
+                //var password = document.getElementById('password').value;
+         //       createUserWithEmailAndPassword(auth, email, password)
+          //          .then((userCredential) => 
+                   // {
+                        // Signed in 
+           //            var user = userCredential.user;
+                        // ...
+                    //})
+                    //.catch((error) => {
+                       // var errorCode = error.code;
+                       // var errorMessage = error.message;
+                        // ..
+                    //});
+           // };
+       // };
+    </script>
+</head>
+<body>
+    <button onclick="window.location.href = 'signin.html';">Sign In</button>
+    <h2>Signup</h2>
+    <form id="signup-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
