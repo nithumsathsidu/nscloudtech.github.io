@@ -80,13 +80,36 @@
                     .then((userCredential) => {
                         // Signed in 
                         var user = userCredential.user;
-                        alert('Signed up successfully');
+                        alert('Signed up successfully');                  
+                        emailInput.value = ''; // Clear email input
+                        passwordInput.value = ''; // Clear password input
+
                     })
                     .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        alert('Error: ' +errorMessage);
-                    });
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    var userFriendlyMessage = '';
+
+    switch (errorCode) {
+        case 'auth/email-already-in-use':
+            userFriendlyMessage = 'This email is already in use by another account.';
+            break;
+        case 'auth/invalid-email':
+            userFriendlyMessage = 'The email address is not valid.';
+            break;
+        case 'auth/operation-not-allowed':
+            userFriendlyMessage = 'Email/password accounts are not enabled.';
+            break;
+        case 'auth/weak-password':
+            userFriendlyMessage = 'The password is too weak.';
+            break;
+        default:
+            userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
+    }
+
+    alert('Error: ' + userFriendlyMessage);
+});
             });
         };
     </script>
