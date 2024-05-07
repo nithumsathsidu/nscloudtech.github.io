@@ -1,60 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Signup Page</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        padding: 20px;
-    }
-    
-    h2 {
-        color: #333;
-    }
-    
-    form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    
-    input[type="email"], input[type="password"] input[type="name"] {
-        border: none;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        form {
+            width: 300px;
+            background: #ffffff;
+            padding: 30px;
+            padding-right: 55px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="name"],
+        input[type="email"],
+        input[type="password"] {
+            border: none;
             background: #f2f2f2;
             margin-bottom: 20px;
             padding: 12px;
-            border-radius: 5px;
+            border-radius: 7px;
             width: 100%;
-    }
-    
-    input[type="submit"] {
-        background-color: #5C6BC0;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        cursor: pointer;
-    }
-    
-    button {
-        background-color: #5C6BC0;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
-    </style>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+        }
 
+        input[type="submit"] {
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 10px;
+            font-size: larger;
+            color: #fff;
+            background: #007BFF;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 150;
+        }
+
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+      p{
+            
+            text-align: end;
+            font-size: 20px;
+            margin-top: 10px;
+            position: relative;
+            bottom: 10px;
+            display: inline-block;
+      }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+            .bottom-text {
+                position: fixed;
+                bottom: 0;
+                font-size: 10vw; /* Adjust this value as needed */
+                text-align: center; /* Add this line */
+                width: 100%; /* Add this line */
+            }
+            </style>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+
+    <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
@@ -67,64 +108,85 @@
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const auth = getAuth();
-
-        window.onload = function() {
-            document.getElementById('signup-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
-                createUserWithEmailAndPassword(auth, email, password)
-                    .then((userCredential) => {
-                        // Signed in 
-                        var user = userCredential.user;
-                        alert('Signed up successfully');                  
-                        emailInput.value = ''; // Clear email input
-                        passwordInput.value = ''; // Clear password input
-
-                    })
-                    .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
-    var userFriendlyMessage = '';
-
-    switch (errorCode) {
-        case 'auth/email-already-in-use':
-            userFriendlyMessage = 'This email is already in use by another account.';
-            break;
-        case 'auth/invalid-email':
-            userFriendlyMessage = 'The email address is not valid.';
-            break;
-        case 'auth/operation-not-allowed':
-            userFriendlyMessage = 'Email/password accounts are not enabled.';
-            break;
-        case 'auth/weak-password':
-            userFriendlyMessage = 'The password is too weak.';
-            break;
-        default:
-            userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
-    }
-
-    alert('Error: ' + userFriendlyMessage);
-});
-            });
-        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
     </script>
+
+
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
 </head>
+
 <body>
-    <button onclick="window.location.href = 'signin.html';">Sign In</button>
-    <h2>Signup</h2>
-    <form id="signup-form">
+        <form id="login-form">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
+        <input type="name" id="name" name="name"><br>
         <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
+        <input type="email" id="email" name="email" required><br>
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <input type="submit" value="Submit">
+        <input type="password" id="password" name="password" required><br>
+
+        <input type="submit" value="Login">
     </form>
+
+    <!-- Place the text inside a container with the "bottom-text" class -->
+    <div class="bottom-text">
+        <p>Don't have an account? Click <a href="signup.html">Here</a> To Sign Up</p>
+    </div>
+
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
+
+            authDomain: "nscloudtech.firebaseapp.com",
+
+            projectId: "nscloudtech",
+
+            storageBucket: "nscloudtech.appspot.com",
+
+            messagingSenderId: "313047332528",
+
+            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
+
+            measurementId: "G-725YRQCWG7"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get elements
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginForm = document.getElementById('login-form');
+
+        // Add login event
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const auth = firebase.auth();
+
+            // Sign in
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    alert('Logged in successfully');
+                    emailInput.value = ''; // Clear email input
+                    passwordInput.value = ''; // Clear password input
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+
+                    alert('Invalid email or password');
+                });
+        });
+    </script>
 </body>
+
 </html>
