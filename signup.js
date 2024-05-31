@@ -2,6 +2,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+<<<<<<< HEAD
+=======
+import { signin } from "./signin.js";
+>>>>>>> 8df7ce72c77d11b3dbab597a35c8154e165c7495
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -24,8 +28,13 @@ var firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+<<<<<<< HEAD
 
 var signin 
+=======
+window.auth = auth;
+
+>>>>>>> 8df7ce72c77d11b3dbab597a35c8154e165c7495
 window.onload = function() {
 document.getElementById('signup-form').addEventListener('submit', function(e) {
 e.preventDefault();
@@ -33,12 +42,22 @@ var email = document.getElementById('email').value;
 var password = document.getElementById('password').value;
 createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
+<<<<<<< HEAD
         signin === true
         var user = userCredential.user;
         alert('Signed up successfully');                  
 
     })
     .catch((error) => {
+=======
+        // Signed in 
+        var user = userCredential.user;
+        alert('Signed up successfully');                  
+        signin === true
+    })
+    .catch((error) => {
+        signin === false
+>>>>>>> 8df7ce72c77d11b3dbab597a35c8154e165c7495
 var errorCode = error.code;
 var errorMessage = error.message;
 
@@ -66,6 +85,7 @@ alert('Error: ' + userFriendlyMessage);
 });
 };
 
+<<<<<<< HEAD
 if (userCredential && userCredential.user) {
 // Add your code here
 } else {
@@ -84,4 +104,15 @@ else {
 // Code to execute if signin is false
 console.log("User is not signed in");
 
+=======
+
+if (signin === true) {
+    // Code to execute if signin is true
+    console.log("User is signed in");
+    window.location.href = "index.html";
+} else {
+    // Code to execute if signin is false
+    console.log("User is not signed in");
+console.log("User is not signed in");
+>>>>>>> 8df7ce72c77d11b3dbab597a35c8154e165c7495
 }
