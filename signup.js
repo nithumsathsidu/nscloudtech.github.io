@@ -58,6 +58,26 @@ break;
 case 'auth/weak-password':
 userFriendlyMessage = 'The password is too weak.';
 break;
+case 'auth/missing-email':
+userFriendlyMessage = 'An email address is required.';
+break;
+case 'auth/internal-error':
+userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
+break;
+case 'auth/too-many-requests':
+userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
+break;
+case 'auth/network-request-failed':
+userFriendlyMessage = 'A network error has occurred. Please try again later.';
+break;
+case 'auth/user-disabled':
+userFriendlyMessage = 'The user account has been disabled by an administrator.';
+break;
+case 'auth/user-not-found':
+userFriendlyMessage = 'The specified user account does not exist.';
+break;
+case 'auth/missing-password' :
+userFriendlyMessage = 'A password is required.';
 default:
 userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
 }

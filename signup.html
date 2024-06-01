@@ -1,68 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Signup Page</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        padding: 20px;
-    }
-    
-    h2 {
-        color: #333;
-    }
-    
-    form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    
-    input[type="email"], input[type="password"] input[type="name"] {
-        border: none;
-            background: #f2f2f2;
-            margin-bottom: 20px;
-            padding: 12px;
-            border-radius: 5px;
-            width: 100%;
-    }
-    
-    input[type="submit"] {
-        background-color: #5C6BC0;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        cursor: pointer;
-    }
-    
-    button {
-        background-color: #5C6BC0;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
+        
+
+
+
     </style>
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="style.css">
    <script type="module" src="signup.js"></script>
     <script type="module" src="script.js"></script>
 </head>
 <body>
-    <button onclick="window.location.href = 'signin.html';">Sign In</button>
-    <h2>Signup</h2>
+    
+
     <form id="signup-form">
+        <h2>Sign Up</h2><br>
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name"><br>
         <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
+        <input type="email" id="email" name="email"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Submit">
+
+
     </form>
+    <div class="bottom-text">
+    <p>Already Have an Account Click <a href="signin.html">Here</a> To Sign In</p>
+    </div>
 </body>
 </html>
