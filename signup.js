@@ -27,72 +27,72 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 
 var signup;
-window.onload = function() {
-document.getElementById('signup-form').addEventListener('submit', function(e) {
-e.preventDefault();
-var email = document.getElementById('email').value;
-var password = document.getElementById('password').value;
-createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        signup === true
-        var user = userCredential.user;
-        alert('Signed up successfully');                  
-        window.location.href = 'signin.html';
-    })
-    .catch((error) => {
-var errorCode = error.code;
-var errorMessage = error.message;
+window.onload = function () {
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                signup === true
+                var user = userCredential.user;
+                alert('Signed up successfully');
+                window.location.href = 'signin.html';
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
 
-var userFriendlyMessage = '';
+                var userFriendlyMessage = '';
 
-switch (errorCode) {
-case 'auth/email-already-in-use':
-userFriendlyMessage = 'This email is already in use by another account.';
-break;
-case 'auth/invalid-email':
-userFriendlyMessage = 'The email address is not valid.';
-break;
-case 'auth/operation-not-allowed':
-userFriendlyMessage = 'Email/password accounts are not enabled.';
-break;
-case 'auth/weak-password':
-userFriendlyMessage = 'The password is too weak.';
-break;
-case 'auth/missing-email':
-userFriendlyMessage = 'An email address is required.';
-break;
-case 'auth/internal-error':
-userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
-break;
-case 'auth/too-many-requests':
-userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
-break;
-case 'auth/network-request-failed':
-userFriendlyMessage = 'A network error has occurred. Please try again later.';
-break;
-case 'auth/user-disabled':
-userFriendlyMessage = 'The user account has been disabled by an administrator.';
-break;
-case 'auth/user-not-found':
-userFriendlyMessage = 'The specified user account does not exist.';
-break;
-case 'auth/missing-password' :
-userFriendlyMessage = 'A password is required.';
-default:
-userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
-}
+                switch (errorCode) {
+                    case 'auth/email-already-in-use':
+                        userFriendlyMessage = 'This email is already in use by another account.';
+                        break;
+                    case 'auth/invalid-email':
+                        userFriendlyMessage = 'The email address is not valid.';
+                        break;
+                    case 'auth/operation-not-allowed':
+                        userFriendlyMessage = 'Email/password accounts are not enabled.';
+                        break;
+                    case 'auth/weak-password':
+                        userFriendlyMessage = 'The password is too weak.';
+                        break;
+                    case 'auth/missing-email':
+                        userFriendlyMessage = 'An email address is required.';
+                        break;
+                    case 'auth/internal-error':
+                        userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
+                        break;
+                    case 'auth/too-many-requests':
+                        userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
+                        break;
+                    case 'auth/network-request-failed':
+                        userFriendlyMessage = 'A network error has occurred. Please try again later.';
+                        break;
+                    case 'auth/user-disabled':
+                        userFriendlyMessage = 'The user account has been disabled by an administrator.';
+                        break;
+                    case 'auth/user-not-found':
+                        userFriendlyMessage = 'The specified user account does not exist.';
+                        break;
+                    case 'auth/missing-password':
+                        userFriendlyMessage = 'A password is required.';
+                    default:
+                        userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
+                }
 
-alert('Error: ' + userFriendlyMessage);
-});
-});
+                alert('Error: ' + userFriendlyMessage);
+            });
+    });
 };
 
 if (userCredential && userCredential.user) {
-// Add your code here
+    // Add your code here
 } else {
 
 
 }
-if(signup = true ){
+if (signup = true) {
     window.location.href = 'verification.html'
 }
