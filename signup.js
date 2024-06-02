@@ -26,7 +26,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
 
-var signin 
+var signup;
 window.onload = function() {
 document.getElementById('signup-form').addEventListener('submit', function(e) {
 e.preventDefault();
@@ -34,7 +34,7 @@ var email = document.getElementById('email').value;
 var password = document.getElementById('password').value;
 createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        signin === true
+        signup === true
         var user = userCredential.user;
         alert('Signed up successfully');                  
         window.location.href = 'signin.html';
@@ -92,4 +92,7 @@ if (userCredential && userCredential.user) {
 } else {
 
 
+}
+if(signup = true ){
+    window.location.href = 'verification.html'
 }
