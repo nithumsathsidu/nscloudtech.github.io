@@ -37,7 +37,7 @@ window.onload = function () {
                 signup === true
                 var user = userCredential.user;
                 alert('Signed up successfully');
-                window.location.href = 'signin.html';
+                window.location.href = 'inex.html';
             })
             .catch((error) => {
                 var errorCode = error.code;

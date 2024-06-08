@@ -94,9 +94,7 @@
                     // Signed in
                     var user = userCredential.user;
                     alert('Logged in successfully');
-                    emailInput.value = ''; // Clear email input
-                    passwordInput.value = ''; // Clear password input
-                    
+                    window.location.href = 'inex.html';
                 })
                 .catch((error) => {
                     
