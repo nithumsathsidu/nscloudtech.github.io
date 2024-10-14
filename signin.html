@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <style>
-        h2{
-            padding-bottom: 30px;
-        }
-        a{
-            padding-top: 50px;
-        }
-
-        form h2 {
+        body {
+            font-family: Arial, sans-serif;
             font-weight: 350;
             padding-top: 0;
             margin-bottom: 30px;
             color: #333333;
         }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-    </script>
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form id="login-form" action="/submit" method="POST">
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
         // Your web app's Firebase configuration
@@ -36,57 +35,6 @@
             storageBucket: "nscloudtech.appspot.com",
             messagingSenderId: "313047332528",
             appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-            measurementId: "G-725YRQCWG7"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
-
-
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
-</head>
-
-<body>
-    <form id="login-form">
-        <h2>Sign In</h2>
-        <label for="email" >Email:</label><br>
-        <input type="email" id="email" name="email" required placeholder="Enter your Username here"><br>
-        <label for="password" >Password:</label><br>
-        <input type="password" id="password" name="password" required placeholder="Enter your email here"><br>
-        <input type="submit" value="Login" class="submit">
-        <div>
-            <a href="loging pages/forgot-password.html" class="forgot-password">Forgot Password?</a>
-            <a href="loging pages/forgot-email.html" class="forgot-email">Forgot Email?</a><br>
-        </div>
-    </form>
-
-    <!-- Place the text inside a container with the "bottom-text" class -->
-    <div class="bottom-text">
-        <p>Don't have an account? Click <a href="signup.html">Here</a> To Sign Up</p>
-    </div>
-
-    <script>
-        // Initialize Firebase
-        var firebaseConfig = {
-            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-
-            authDomain: "nscloudtech.firebaseapp.com",
-
-            projectId: "nscloudtech",
-
-            storageBucket: "nscloudtech.appspot.com",
-
-            messagingSenderId: "313047332528",
-
-            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-
             measurementId: "G-725YRQCWG7"
         };
         firebase.initializeApp(firebaseConfig);
@@ -102,6 +50,12 @@
             const email = emailInput.value;
             const password = passwordInput.value;
             const auth = firebase.auth();
+            const recaptchaResponse = grecaptcha.getResponse();
+
+            if (recaptchaResponse.length === 0) {
+                alert('Please complete the reCAPTCHA');
+                return;
+            }
 
             // Sign in
             auth.signInWithEmailAndPassword(email, password)
@@ -109,45 +63,14 @@
                     // Signed in
                     var user = userCredential.user;
                     alert('Logged in successfully');
-                    window.location.href = 'inex.html';
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
-                    
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    var userFriendlyMessage = '';
-
-                switch (errorCode) {
-                    case 'auth/operation-not-allowed':
-                        userFriendlyMessage = 'Email/password accounts are not enabled.';
-                        break; 
-                        case 'auth/missing-email':
-                        userFriendlyMessage = 'An email address is required.';
-                        break;
-                    case 'auth/internal-error':
-                        userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
-                        break;
-                    case 'auth/too-many-requests':
-                        userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
-                        break;
-                    case 'auth/network-request-failed':
-                        userFriendlyMessage = 'A network error has occurred. Please try again later.';
-                        break;
-                    case 'auth/user-disabled':
-                        userFriendlyMessage = 'The user account has been disabled by an administrator.';
-                        break;
-                    case 'auth/user-not-found':
-                        userFriendlyMessage = 'The specified user account does not exist.';
-                        break;
-                    case 'auth/missing-password':
-                        userFriendlyMessage = 'A password is required.';
-                    default:
-                        userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
-                }
-                    alert (errorMessage);
+                    alert(errorMessage);
                 });
         });
     </script>
 </body>
-
 </html>
