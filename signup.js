@@ -21,7 +21,8 @@ var firebaseConfig = {
     measurementId: "G-725YRQCWG7"
 };
 
-// Initialize Firebase
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
@@ -32,7 +33,7 @@ const recaptchaResponse = grecaptcha.getResponse();
                 return;
             }
 
-            
+
 var signup;
 window.onload = function () {
     document.getElementById('signup-form').addEventListener('submit', function (e) {
