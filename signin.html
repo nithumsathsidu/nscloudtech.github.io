@@ -138,7 +138,8 @@
                     // Signed in
                     var user = userCredential.user;
                     alert('Logged in successfully');
-                    window.location.href = 'inex.html';
+                    localStorage.setItem('login', 'true'); // Set login status
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
                     

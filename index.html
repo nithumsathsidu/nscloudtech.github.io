@@ -9,6 +9,17 @@
 
 </head>
 <body>
-    <script src="index.js"></script>
+    <script>
+        // Check login status
+        const loginStatus = localStorage.getItem('login');
+        if (loginStatus === 'true') {
+            console.log('User is logged in');
+            alert('User is logged in');
+        } else {
+            console.log('User is not logged in');
+            alert('User is not logged in');
+            window.location.href = 'signin.html';
+        }
+    </script>
 </body>
 </html>
