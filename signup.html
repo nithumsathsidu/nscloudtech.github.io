@@ -2,12 +2,8 @@
 <html>
 
 <head>
-    <style>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 
-
-
-
-    </style>
     <title>Signup Page</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="signup.js"></script>
@@ -25,6 +21,11 @@
         <input type="email" id="email" name="email" placeholder="Enter your email here"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" placeholder="Enter your Password here"><br>
+        
+        <div class="g-recaptcha" data-sitekey=6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi></div>
+        <br>
+        
+        
         <input type="submit" value="Sign Up"><br>
 
     </form>
@@ -32,6 +33,11 @@
     <div class="bottom-text">
         <p>Already Have an Account Click <a href="signin.html" class="signin">Here</a> To Sign In</p>
     </div>
+    <script>
+        function onSubmit(token) {
+          document.getElementById("demo-form").submit();
+        }
+      </script>
 </body>
 
 </html>
