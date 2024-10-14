@@ -1,26 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
-        h2{
-            padding-bottom: 30px;
-        }
-        a{
-            padding-top: 50px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
         }
 
-        form h2 {
-            font-weight: 350;
-            padding-top: 0;
-            margin-bottom: 30px;
-            color: #333333;
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 350;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .g-recaptcha {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .bottom-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px; /* Default font size */
+        }
+
+        .bottom-text a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .bottom-text a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 600px) {
             form {
                 padding: 15px;
@@ -32,16 +96,36 @@
 
             input[type="submit"] {
                 font-size: 14px;
+                padding: 8px 16px;
             }
 
+            .bottom-text {
+                font-size: 14px; /* Smaller font size for mobile */
+            }
         }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
+</head>
+<body>
+    <form id="login-form">
+        <h2>Sign In</h2>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required placeholder="Enter your email here"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required placeholder="Enter your password here"><br>
+        
+        <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+        <br>
+        <input type="submit" value="Login" class="submit">
+        <br><br>
+        <div>
+            <a href="loging pages/forgot-password.html" class="forgot-password">Forgot Password?</a>
+            <a href="loging pages/forgot-email.html" class="forgot-email">Forgot Email?</a><br>
+        </div>
+    </form>
+
+    <div class="bottom-text">
+        <p>Don't have an account? Click <a href="signup.html">Here</a> To Sign Up</p>
+    </div>
 
     <script>
         // Your web app's Firebase configuration
@@ -58,60 +142,6 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
-    </script>
-
-
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
-</head>
-
-<body>
-    <form id="login-form">
-        <h2>Sign In</h2>
-        <label for="email" >Email:</label><br>
-        <input type="email" id="email" name="email" required placeholder="Enter your Username here"><br>
-        <label for="password" >Password:</label><br>
-        <input type="password" id="password" name="password" required placeholder="Enter your email here"><br>
-        
-        <div class="g-recaptcha" data-sitekey=6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi></div>
-        <br>
-        <input type="submit" value="Login" class="submit">
-        <br>
-        <br>
-        <div>
-            <a href="loging pages/forgot-password.html" class="forgot-password">Forgot Password?</a>
-            <a href="loging pages/forgot-email.html" class="forgot-email">Forgot Email?</a><br>
-        </div>
-
-        </form>
-
-    <!-- Place the text inside a container with the "bottom-text" class -->
-    <div class="bottom-text">
-        <p>Don't have an account? Click <a href="signup.html">Here</a> To Sign Up</p>
-    </div>
-
-    <script>
-        // Initialize Firebase
-        var firebaseConfig = {
-            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-
-            authDomain: "nscloudtech.firebaseapp.com",
-
-            projectId: "nscloudtech",
-
-            storageBucket: "nscloudtech.appspot.com",
-
-            messagingSenderId: "313047332528",
-
-            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-
-            measurementId: "G-725YRQCWG7"
-        };
-        firebase.initializeApp(firebaseConfig);
 
         // Get elements
         const emailInput = document.getElementById('email');
@@ -130,51 +160,21 @@
                 alert('Please complete the reCAPTCHA');
                 return;
             }
+
             // Sign in
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
                     // Signed in
                     var user = userCredential.user;
                     alert('Logged in successfully');
-                    window.location.href = 'inex.html';
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
-                    
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    var userFriendlyMessage = '';
-
-                switch (errorCode) {
-                    case 'auth/operation-not-allowed':
-                        userFriendlyMessage = 'Email/password accounts are not enabled.';
-                        break; 
-                        case 'auth/missing-email':
-                        userFriendlyMessage = 'An email address is required.';
-                        break;
-                    case 'auth/internal-error':
-                        userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
-                        break;
-                    case 'auth/too-many-requests':
-                        userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
-                        break;
-                    case 'auth/network-request-failed':
-                        userFriendlyMessage = 'A network error has occurred. Please try again later.';
-                        break;
-                    case 'auth/user-disabled':
-                        userFriendlyMessage = 'The user account has been disabled by an administrator.';
-                        break;
-                    case 'auth/user-not-found':
-                        userFriendlyMessage = 'The specified user account does not exist.';
-                        break;
-                    case 'auth/missing-password':
-                        userFriendlyMessage = 'A password is required.';
-                    default:
-                        userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
-                }
-                    alert (errorMessage);
+                    alert(errorMessage);
                 });
         });
     </script>
 </body>
-
 </html>
