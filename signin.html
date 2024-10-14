@@ -128,19 +128,22 @@
             const recaptchaResponse = grecaptcha.getResponse();
 
             if (recaptchaResponse.length === 0) {
-                alert('Please complete the reCAPTCHA');
+              alert('Please complete the reCAPTCHA');
                 return;
             }
             
             // Sign in
             auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Signed in
-                    var user = userCredential.user;
-                    alert('Logged in successfully');
-                    localStorage.setItem('login', 'true'); // Set login status
-                    window.location.href = 'index.html';
-                })
+            .then((userCredential) => {
+                // Signed in
+                var user = userCredential.user;
+                var userName = user.displayName || 'User'; // Retrieve user's name or use a default value
+                alert('Logged in successfully');
+                console.log(`User logged in: ${userName}`);
+                localStorage.setItem('login', 'true'); // Set login status
+                localStorage.setItem('userName', userName); // Store user's name
+                window.location.href = 'index.html';
+        })
                 .catch((error) => {
                     
                     var errorCode = error.code;

@@ -25,7 +25,14 @@ var firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+const recaptchaResponse = grecaptcha.getResponse();
 
+            if (recaptchaResponse.length === 0) {
+              alert('Please complete the reCAPTCHA');
+                return;
+            }
+
+            
 var signup;
 window.onload = function () {
     document.getElementById('signup-form').addEventListener('submit', function (e) {
@@ -37,7 +44,7 @@ window.onload = function () {
                 signup === true
                 var user = userCredential.user;
                 alert('Signed up successfully');
-                window.location.href = 'inex.html';
+                window.location.href = 'index.html';
             })
             .catch((error) => {
                 var errorCode = error.code;

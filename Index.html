@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,20 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Document</title>
     <script src="signup.js"></script>
-
 </head>
-<body>
+<body style="text-align: center;">
+    <div id="user-name"></div>
     <script>
         // Check login status
         const loginStatus = localStorage.getItem('login');
+        const userName = 'User'; // Replace with dynamic user name if available
+
         if (loginStatus === 'true') {
             console.log('User is logged in');
-            alert('User is logged in');
+            alert(`User is logged in: ${userName}`);
         } else {
-            console.log('User is not logged in');
-            alert('User is not logged in');
             window.location.href = 'signin.html';
         }
+
+        // Display user's name
+        document.getElementById('user-name').textContent = userName;
     </script>
 </body>
 </html>
