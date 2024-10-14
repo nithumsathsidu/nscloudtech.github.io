@@ -108,7 +108,12 @@
             const email = emailInput.value;
             const password = passwordInput.value;
             const auth = firebase.auth();
+            const recaptchaResponse = grecaptcha.getResponse();
 
+            if (recaptchaResponse.length === 0) {
+                alert('Please complete the reCAPTCHA');
+                return;
+            }
             // Sign in
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
