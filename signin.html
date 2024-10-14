@@ -77,7 +77,7 @@
         <label for="password" >Password:</label><br>
         <input type="password" id="password" name="password" required placeholder="Enter your email here"><br>
         
-        <div class="g-recaptcha" data-sitekey="your_site_key"></div><br>
+        <div class="g-recaptcha" data-sitekey=6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi></div><br>
                 <br>
         <input type="submit" value="Login" class="submit">
         <br>
@@ -117,6 +117,7 @@
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const loginForm = document.getElementById('login-form');
+        
 
         // Add login event
         loginForm.addEventListener('submit', (e) => {
@@ -124,6 +125,12 @@
             const email = emailInput.value;
             const password = passwordInput.value;
             const auth = firebase.auth();
+            const recaptchaResponse = grecaptcha.getResponse();
+
+            if (recaptchaResponse.length === 0) {
+                alert('Please complete the reCAPTCHA');
+                return;
+            }
             
             // Sign in
             auth.signInWithEmailAndPassword(email, password)
