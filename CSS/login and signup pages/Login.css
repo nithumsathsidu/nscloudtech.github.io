@@ -95,21 +95,27 @@ form#signin-form .forgot-email:hover {
 /* Bottom text */
 .bottom-text {
     background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-radius: 10px;
     text-align: center;
     width: 100%;
     position: absolute;
     bottom: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
 }
 
 .bottom-text a {
     color: #0066cc;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .bottom-text a:hover {
     text-decoration: underline;
+    color: #004999;
 }
 .header {
     position: absolute;

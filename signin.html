@@ -7,48 +7,12 @@
     <title>Signup Page</title>
     <link rel="icon" href="logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="CSS/login and signup pages/Login.css">
-    <script type="module" src="script.js"></script>
-    <script>
-        function validateRecaptcha(event) {
-            var response = grecaptcha.getResponse();
-            if (response.length === 0) {
-                alert("Please complete the reCAPTCHA.");
-                event.preventDefault();
-                return false;
-            }
-            return true;
-        }
-    </script>
-</head>
-<body style="background-image: url('CSS/login%20and%20signup%20pages/background.jpg');">
-    <div class="header">
-        <img src="logo.jpg" alt="Logo">
-        <h1>NScloudtech</h1>
-    </div>
-
-    <form id="signin-form">
-        <h2>Sign In</h2><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" placeholder="Enter your email here"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" placeholder="Enter your Password here"><br>
-        <br>
-        <div class="g-recaptcha" data-sitekey="6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi"></div>
-        <br>
-        <br>
-        <input type="submit" value="Sign In"><br>
-    </form>
-
-    <div class="bottom-text">
-        <p>Don't have an account? Click <a href="signup.html" class="signup">Here</a> to Sign Up</p>
-    </div>
-
     <script type="module">
-        // Import the Firebase modules that you need in your app.
+        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-        // Your web app's Firebase configuration
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCnlWeo1q5ca85gDL800o-tgzPqcp4QNsc",
             authDomain: "nscloudtech1.firebaseapp.com",
@@ -81,6 +45,8 @@
                     const userData = snapshot.val();
                     if (userData.password === password) {
                         alert('Sign-in successful!');
+                        localStorage.setItem('login', 'true');
+                        localStorage.setItem('username', userData.username); // Assuming 'username' is a field in your database
                         window.location.href = 'index.html';
                     } else {
                         alert('Incorrect password.');
@@ -93,5 +59,27 @@
             });
         });
     </script>
+</head>
+<body style="background-image: url('CSS/login%20and%20signup%20pages/background.jpg');">
+    <div class="header">
+        <img src="logo.jpg" alt="Logo">
+        <h1>NScloudtech</h1>
+    </div>
+
+    <form id="signin-form">
+        <h2>Sign In</h2><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email here"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your Password here"><br>
+        <br>
+        <div class="g-recaptcha" data-sitekey="6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi"></div>
+        <br>
+        <br>
+        <input type="submit" value="Sign In"><br>
+    </form>
+    <div class="bottom-text">
+        <p>Don't Have an Account Click <a href="signup.html" class="signup">Here</a> To Sign Up</p>
+    </div>
 </body>
 </html>

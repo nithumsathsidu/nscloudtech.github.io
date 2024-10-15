@@ -2,33 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css" integrity="sha512-DJLNx+VLY4aEiEQFjiawXaiceujj5GA7lIY8CHCIGQCBPfsEG0nGz1edb4Jvw1LR7q031zS5PpPqFuPA8ihlRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="CSS/index.css">
-    <script src="signup.js"></script>
-</head>
-<body style="text-align: center;">
-    <div>
-        <h3 style="text-align: center;">This Page is Under maintained</h3>
-    </div>
-    <h1><a href="signin.html">signin</a></h1>
-    
     <script>
-        // Check login status
-        const loginStatus = localStorage.getItem('login');
-        const userName = 'User'; // Replace with dynamic user name if available
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginStatus = localStorage.getItem('login');
+            const username = localStorage.getItem('username');
 
-        if (loginStatus === 'true') {
-            console.log('User is logged in');
-            alert(`User is logged in: ${userName}`);
-        } else {
-            window.location.href = 'signin.html';
-        }
-        
-        // Display user's name
-        document.getElementById('user-name').textContent = userName;
+            if (loginStatus === 'true' && username) {
+                document.getElementById('welcome-message').textContent = `Welcome, ${username}`;
+            }
+        });
     </script>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.jpg" alt="Logo">
+        <h1>NScloudtech</h1>
+        <p id="welcome-message"></p>
+    </div>
+
+    <!-- Rest of your index.html content -->
+
+    <div class="bottom-text">
+    </div>
 </body>
 </html>
