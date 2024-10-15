@@ -114,7 +114,7 @@
                     // Signed in
                     var user = userCredential.user;
                     alert('Login successful!');
-                    // Redirect to another page or perform other actions
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
                     var errorCode = error.code;
