@@ -1,6 +1,6 @@
 /* General styles */
 body {
-    background-image: url('images/Login pages/background.jpg');
+    background-image: url('../img/login pages/background.jpg');
     background-size: cover;
     font-family: Arial, sans-serif;
     color: #333;
@@ -11,6 +11,21 @@ body {
     height: 100vh;
     margin: 0;
     position: relative;
+}
+
+/* Header styles */
+
+
+.logo {
+    width: 70px; /* Increased width */
+    height: 70px; /* Increased height */
+    margin-right: 10px;
+}
+
+.site-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
 }
 
 /* Form container */
