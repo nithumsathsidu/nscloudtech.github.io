@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="CSS/login and signup pages/Login.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <title>Signup Page</title>
     <link rel="icon" href="logo.jpg" type="image/x-icon">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="CSS/login and signup pages/signup.css">
+    <script type="module" src="signup.js"></script>
+    <script type="module" src="script.js"></script>
     <script>
         function validateRecaptcha(event) {
             var response = grecaptcha.getResponse();
