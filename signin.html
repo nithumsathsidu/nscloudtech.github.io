@@ -28,6 +28,7 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="CSS/login and signup pages/Login.css">
     <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
     <style>
@@ -67,7 +68,7 @@
         <input type="email" id="email" name="email" required placeholder="Enter your Username here"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" required placeholder="Enter your email here"><br>
-        
+        <div class="g-recaptcha" data-sitekey="6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi"></div>
         <br>
         <input type="submit" value="Login" class="submit">
         <br>
@@ -99,9 +100,14 @@
         // Handle form submission
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
+            const recaptcha = grecaptcha.getResponse();
 
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+            if (!recaptcha) {
+                alert('Please complete the reCAPTCHA to proceed.');
+                return;
+            }
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
