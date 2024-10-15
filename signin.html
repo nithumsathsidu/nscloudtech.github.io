@@ -1,84 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
-    <style>
-        h2{
-            padding-bottom: 30px;
-        }
-        a{
-            padding-top: 50px;
-        }
-
-        form h2 {
-            font-weight: 350;
-            padding-top: 0;
-            margin-bottom: 30px;
-            color: #333333;
-        }
-        @media (max-width: 600px) {
-            form {
-                padding: 15px;
-            }
-
-            h2 {
-                font-size: 24px;
-            }
-
-            input[type="submit"] {
-                font-size: 14px;
-            }
-
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-            authDomain: "nscloudtech.firebaseapp.com",
-            projectId: "nscloudtech",
-            storageBucket: "nscloudtech.appspot.com",
-            messagingSenderId: "313047332528",
-            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-            measurementId: "G-725YRQCWG7"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
-
-
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <link rel="stylesheet" href="CSS/login and signup pages/Login.css">
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
-<body>
+<body style="background-image: url('images/Login pages/background.jpg'); background-size: 100%;">
     <form id="login-form">
         <h2>Sign In</h2>
-        <label for="email" >Email:</label><br>
+        <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required placeholder="Enter your Username here"><br>
-        <label for="password" >Password:</label><br>
+        <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" required placeholder="Enter your email here"><br>
         
-        <div class="g-recaptcha" data-sitekey=6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi></div><br>
-                <br>
+        <div id="recaptcha-container" class="g-recaptcha" data-sitekey="6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi"></div><br>
+        <br>
         <input type="submit" value="Login" class="submit">
         <br>
         <br>
@@ -86,109 +27,85 @@
             <a href="loging pages/forgot-password.html" class="forgot-password">Forgot Password?</a>
             <a href="loging pages/forgot-email.html" class="forgot-email">Forgot Email?</a><br>
         </div>
+    </form>
 
-        </form>
-
-    <!-- Place the text inside a container with the "bottom-text" class -->
     <div class="bottom-text">
         <p>Don't have an account? Click <a href="signup.html">Here</a> To Sign Up</p>
     </div>
 
     <script>
-        // Initialize Firebase
+        // Your web app's Firebase configuration
         var firebaseConfig = {
-            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-
-            authDomain: "nscloudtech.firebaseapp.com",
-
-            projectId: "nscloudtech",
-
-            storageBucket: "nscloudtech.appspot.com",
-
-            messagingSenderId: "313047332528",
-
-            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-
-            measurementId: "G-725YRQCWG7"
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
         };
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // Get elements
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const loginForm = document.getElementById('login-form');
-        
+        // Render the reCAPTCHA widget
+        grecaptcha.render('recaptcha-container', {
+            'sitekey': '6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi',
+            'theme': 'light'
+        });
 
-        // Add login event
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            const auth = firebase.auth();
-            const recaptchaResponse = grecaptcha.getResponse();
+        // Handle form submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
 
-            if (recaptchaResponse.length === 0) {
-              alert('Please complete the reCAPTCHA');
-                return;
-            }
-            
-            // Sign in
-            auth.signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Signed in
-                var user = userCredential.user;
-                var userName = user.displayName || 'User'; // Retrieve user's name or use a default value
-                alert('Logged in successfully');
-                console.log(`User logged in: ${userName}`);
-                localStorage.setItem('login', 'true'); // Set login status
-                localStorage.setItem('userName', userName); // Store user's name
-                window.location.href = 'index.html';
-        })
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    alert('Login successful!');
+                    // Redirect to another page or perform other actions
+                })
                 .catch((error) => {
-                    
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     var userFriendlyMessage = '';
 
-                switch (errorCode) {
-                    case 'auth/operation-not-allowed':
-                        userFriendlyMessage = 'Email/password accounts are not enabled.';
-                        break; 
+                    switch (errorCode) {
+                        case 'auth/operation-not-allowed':
+                            userFriendlyMessage = 'Email/password accounts are not enabled.';
+                            break; 
                         case 'auth/missing-email':
-                        userFriendlyMessage = 'An email address is required.';
-                        break;
-                    case 'auth/internal-error':
-                        userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
-                        break;
-                    case 'auth/too-many-requests':
-                        userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
-                        break;
-                    case 'auth/network-request-failed':
-                        userFriendlyMessage = 'A network error has occurred. Please try again later.';
-                        break;
-                    case 'auth/user-disabled':
-                        userFriendlyMessage = 'The user account has been disabled by an administrator.';
-                        break;
-                    case 'auth/user-not-found':
-                        userFriendlyMessage = 'The specified user account does not exist.';
-                        break;
-                    case 'auth/missing-password':
-                        userFriendlyMessage = 'A password is required.';
-                        break;
-                    case 'auth/invalid_login_credentials':
-                        userFriendlyMessage = 'The password is invalid.';
-                        break;
-                    case 'auth/invalid-email':
-                        userFriendlyMessage = 'The email address is badly formatted.';
-                        break;
-                    
-                    default:
-                        userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
-                }
-                    alert (errorMessage);
+                            userFriendlyMessage = 'An email address is required.';
+                            break;
+                        case 'auth/internal-error':
+                            userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
+                            break;
+                        case 'auth/too-many-requests':
+                            userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
+                            break;
+                        case 'auth/network-request-failed':
+                            userFriendlyMessage = 'A network error has occurred. Please try again later.';
+                            break;
+                        case 'auth/user-disabled':
+                            userFriendlyMessage = 'The user account has been disabled by an administrator.';
+                            break;
+                        case 'auth/user-not-found':
+                            userFriendlyMessage = 'The specified user account does not exist.';
+                            break;
+                        case 'auth/missing-password':
+                            userFriendlyMessage = 'A password is required.';
+                            break;
+                        case 'auth/invalid_login_credentials':
+                            userFriendlyMessage = 'The password is invalid.';
+                            break;
+                        default:
+                            userFriendlyMessage = 'An unknown error occurred. Please try again.';
+                            break;
+                    }
+
+                    alert(userFriendlyMessage);
                 });
         });
     </script>
 </body>
-
 </html>

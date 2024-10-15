@@ -1,0 +1,98 @@
+/* General styles */
+body {
+    background-image: url('images/Login pages/background.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+/* Form container */
+form#login-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Form heading */
+form#login-form h2 {
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Form labels */
+form#login-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+}
+
+/* Form inputs */
+form#login-form input[type="email"],
+form#login-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit button */
+form#login-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+form#login-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Links */
+form#login-form .forgot-password,
+form#login-form .forgot-email {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0066cc;
+    text-decoration: none;
+}
+
+form#login-form .forgot-password:hover,
+form#login-form .forgot-email:hover {
+    text-decoration: underline;
+}
+
+/* Bottom text */
+.bottom-text {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom-text a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.bottom-text a:hover {
+    text-decoration: underline;
+}
