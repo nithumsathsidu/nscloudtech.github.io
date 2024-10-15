@@ -138,3 +138,17 @@ form#signin-form .forgot-email:hover {
     border-radius: 5px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
+.header-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-link img {
+    vertical-align: middle;
+}
+
+.header-link h1 {
+    display: inline;
+    margin-left: 10px;
+    vertical-align: middle;
+}
