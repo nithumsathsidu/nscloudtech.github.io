@@ -1,6 +1,6 @@
 /* General styles */
 body {
-    background-image: url('../img/login pages/background.jpg');
+    background-image: url('background.jpg');
     background-size: cover;
     font-family: Arial, sans-serif;
     color: #333;
