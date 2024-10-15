@@ -9,7 +9,17 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
+    <script>
+        function validateRecaptcha(event) {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert("Please complete the reCAPTCHA.");
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="header">

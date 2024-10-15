@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="CSS/login and signup pages/signup.css">
     <script type="module" src="signup.js"></script>
     <script type="module" src="script.js"></script>
+    <script>
+        function validateRecaptcha(event) {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert("Please complete the reCAPTCHA.");
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
+
 </head>
 
 <body>
