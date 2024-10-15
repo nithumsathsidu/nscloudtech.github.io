@@ -1,3 +1,5 @@
+/* signup.css */
+
 /* General styles */
 body {
     background-image: url('/../CSS/login and signup pages/background.jpg');
@@ -13,23 +15,8 @@ body {
     position: relative;
 }
 
-/* Header styles */
-
-
-.logo {
-    width: 70px; /* Increased width */
-    height: 70px; /* Increased height */
-    margin-right: 10px;
-}
-
-.site-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-}
-
 /* Form container */
-form#signin-form {
+form#signup-form {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
@@ -40,13 +27,13 @@ form#signin-form {
 }
 
 /* Form heading */
-form#signin-form h2 {
+form#signup-form h2 {
     margin-bottom: 20px;
     color: #444;
 }
 
 /* Form labels */
-form#signin-form label {
+form#signup-form label {
     display: block;
     margin-bottom: 5px;
     text-align: left;
@@ -54,8 +41,9 @@ form#signin-form label {
 }
 
 /* Form inputs */
-form#signin-form input[type="email"],
-form#signin-form input[type="password"] {
+form#signup-form input[type="text"],
+form#signup-form input[type="email"],
+form#signup-form input[type="password"] {
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
@@ -64,7 +52,7 @@ form#signin-form input[type="password"] {
 }
 
 /* Submit button */
-form#signin-form input[type="submit"] {
+form#signup-form input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -74,22 +62,8 @@ form#signin-form input[type="submit"] {
     width: 100%;
 }
 
-form#signin-form input[type="submit"]:hover {
+form#signup-form input[type="submit"]:hover {
     background-color: #45a049;
-}
-
-/* Links */
-form#signin-form .forgot-password,
-form#signin-form .forgot-email {
-    display: inline-block;
-    margin-top: 10px;
-    color: #0066cc;
-    text-decoration: none;
-}
-
-form#signin-form .forgot-password:hover,
-form#signin-form .forgot-email:hover {
-    text-decoration: underline;
 }
 
 /* Bottom text */

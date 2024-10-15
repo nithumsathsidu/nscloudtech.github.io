@@ -3,159 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Login page for NScloudtech">
-    <meta name="keywords" content="NScloudtech, login, signin, sign in, login page">
-    <meta name="author" content="NScloudtech">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="bingbot" content="index, follow">
-    <meta name="yahoobot" content="index, follow">
-    <meta name="msnbot" content="index, follow">
-    <meta name="searchbot" content="index, follow">
-    <meta name="teoma" content="index, follow">
-    <meta name="alexabot" content="index, follow">
-    <meta name="slurp" content="index, follow">
-    <meta name="spider" content="index, follow">
-    <meta name="robot" content="index, follow">
-    <meta name="index" content="index, follow">
-    <meta name="follow" content="index, follow">
-    <meta name="revisit-after" content="7 days">
-    <meta name="distribution" content="web">
-    <meta name="rating" content="general">
-    <meta name="referrer" content="no-referrer">
-    <meta name="format-detection" content="telephone=no">
     <title>Login Page</title>
     <link rel="stylesheet" href="CSS/login and signup pages/Login.css">
     <link rel="icon" href="logo.jpg" type="image/x-icon">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
-    <style>
-        .header {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .header img {
-            height: 100px; /* Increased height */
-            margin-right: 10px;
-        }
-        .header h1 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 24px;
-            margin: 0;
-            color: #0000FF; /* Blue color */
-            background-color: rgba(255, 255, 255, 0.8); /* White background with some transparency */
-            padding: 5px;
-            border-radius: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-        }
-    </style>
-</head>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 
-<body style="background-image: url(background.jpg);">
+</head>
+<body>
     <div class="header">
         <img src="logo.jpg" alt="Logo">
         <h1>NScloudtech</h1>
     </div>
-    
-    <form id="login-form">
-        <h2>Sign In</h2>
+
+    <form id="signin-form">
+        <h2>Sign In</h2><br>
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required placeholder="Enter your Username here"><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email here"><br>
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required placeholder="Enter your email here"><br>
+        <input type="password" id="password" name="password" placeholder="Enter your Password here"><br>
+        <br>
         <div class="g-recaptcha" data-sitekey="6Lec92AqAAAAAKpDm2zHWp-9c57WCkG9GFDtamAi"></div>
         <br>
-        <input type="submit" value="Login" class="submit">
         <br>
-        <br>
-        <div>
-            <a href="loging pages/forgot-password.html" class="forgot-password">Forgot Password?</a>
-            <a href="loging pages/forgot-email.html" class="forgot-email">Forgot Email?</a><br>
-        </div>
+        <input type="submit" value="Sign In"><br>
     </form>
 
     <div class="bottom-text">
-        <p>Don't have an account? Click <a href="signup.html">Here</a> To Sign Up</p>
+        <p>Don't have an account? Click <a href="signup.html" class="signup">Here</a> to Sign Up</p>
     </div>
 
-    <script>
+    <script type="module">
+        // Import the Firebase modules that you need in your app.
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
         // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-            authDomain: "nscloudtech.firebaseapp.com",
-            projectId: "nscloudtech",
-            storageBucket: "nscloudtech.appspot.com",
-            messagingSenderId: "313047332528",
-            appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-            measurementId: "G-725YRQCWG7"
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnlWeo1q5ca85gDL800o-tgzPqcp4QNsc",
+            authDomain: "nscloudtech1.firebaseapp.com",
+            databaseURL: "https://nscloudtech1-default-rtdb.firebaseio.com",
+            projectId: "nscloudtech1",
+            storageBucket: "nscloudtech1.appspot.com",
+            messagingSenderId: "682366385440",
+            appId: "1:682366385440:web:769ac7c6ee00740c132b45",
+            measurementId: "G-Z09RV5W6VM"
         };
+
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-        // Handle form submission
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const recaptcha = grecaptcha.getResponse();
+        // Function to handle sign-in
+        document.getElementById('signin-form').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-            if (!recaptcha) {
-                alert('Please complete the reCAPTCHA to proceed.');
-                return;
-            }
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Signed in
-                    var user = userCredential.user;
-                    alert('Login successful!');
-                    window.location.href = 'index.html';
-                })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    var userFriendlyMessage = '';
+            // Sanitize email to use as a key
+            const sanitizedEmail = email.replace(/[.#$[\]]/g, '_');
 
-                    switch (errorCode) {
-                        case 'auth/operation-not-allowed':
-                            userFriendlyMessage = 'Email/password accounts are not enabled.';
-                            break; 
-                        case 'auth/missing-email':
-                            userFriendlyMessage = 'An email address is required.';
-                            break;
-                        case 'auth/internal-error':
-                            userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
-                            break;
-                        case 'auth/too-many-requests':
-                            userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
-                            break;
-                        case 'auth/network-request-failed':
-                            userFriendlyMessage = 'A network error has occurred. Please try again later.';
-                            break;
-                        case 'auth/user-disabled':
-                            userFriendlyMessage = 'The user account has been disabled by an administrator.';
-                            break;
-                        case 'auth/user-not-found':
-                            userFriendlyMessage = 'The specified user account does not exist.';
-                            break;
-                        case 'auth/missing-password':
-                            userFriendlyMessage = 'A password is required.';
-                            break;
-                        case 'auth/invalid_login_credentials':
-                            userFriendlyMessage = 'The password is invalid.';
-                            break;
-                        default:
-                            userFriendlyMessage = 'An unknown error occurred. Please try again.';
-                            break;
+            // Retrieve user data from Firebase Realtime Database
+            const dbRef = ref(database);
+            get(child(dbRef, sanitizedEmail)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    if (userData.password === password) {
+                        alert('Sign-in successful!');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('Incorrect password.');
                     }
-
-                    alert(userFriendlyMessage);
-                });
+                } else {
+                    alert('No user found with this email.');
+                }
+            }).catch((error) => {
+                alert('Failed to retrieve user data: ' + error.message);
+            });
         });
     </script>
 </body>

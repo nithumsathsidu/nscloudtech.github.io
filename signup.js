@@ -1,110 +1,62 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
-//import { signin } from "./signin.js";
+// Import the Firebase modules that you need in your app.
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getDatabase, ref, set, get, query, orderByChild, equalTo, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCdP0H1AHOZkv_iZZjpKVeVwclcqWUNxy8",
-
-    authDomain: "nscloudtech.firebaseapp.com",
-
-    projectId: "nscloudtech",
-
-    storageBucket: "nscloudtech.appspot.com",
-
-    messagingSenderId: "313047332528",
-
-    appId: "1:313047332528:web:a4aabf4e61bb518996ed75",
-
-    measurementId: "G-725YRQCWG7"
+const firebaseConfig = {
+    apiKey: "AIzaSyCnlWeo1q5ca85gDL800o-tgzPqcp4QNsc",
+    authDomain: "nscloudtech1.firebaseapp.com",
+    databaseURL: "https://nscloudtech1-default-rtdb.firebaseio.com",
+    projectId: "nscloudtech1",
+    storageBucket: "nscloudtech1.appspot.com",
+    messagingSenderId: "682366385440",
+    appId: "1:682366385440:web:769ac7c6ee00740c132b45",
+    measurementId: "G-Z09RV5W6VM"
 };
 
-document.getElementById("signup-form").addEventListener("submit", function (e) {
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Function to handle form submission
+document.getElementById('signup-form').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const recaptchaResponse = grecaptcha.getResponse();
+    const username = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-    if (!recaptchaResponse) {
-        alert('Please complete the reCAPTCHA.');
-        return;
-    }
+    // Sanitize email to use as a key
+    const sanitizedEmail = email.replace(/[.#$[\]]/g, '_');
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const auth = firebase.auth();
+    // Check if email or username already exists
+    const dbRef = ref(database);
+    const emailCheck = get(child(dbRef, sanitizedEmail));
+    const usernameQuery = query(ref(database, '/'), orderByChild('username'), equalTo(username));
+    const usernameCheck = get(usernameQuery);
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed up
-            var user = userCredential.user;
-            var userName = user.displayName || 'User'; // Retrieve user's name or use a default value
-            var userEmail = user.email;
+    Promise.all([emailCheck, usernameCheck]).then((results) => {
+        const emailSnapshot = results[0];
+        const usernameSnapshot = results[1];
 
-            // Save user's data to Firebase Realtime Database
-            firebase.database().ref('users/' + user.uid).set({
-                username: userName,
-                email: userEmail
+        if (emailSnapshot.exists()) {
+            alert('Email is already saved.');
+        } else if (usernameSnapshot.exists()) {
+            alert('Username already exists.');
+        } else {
+            // Save data to Firebase Realtime Database
+            set(ref(database, sanitizedEmail), {
+                username: username,
+                email: email,
+                password: password
             }).then(() => {
-                alert('Signed up successfully');
-                console.log(`User signed up: ${userName}`);
-                localStorage.setItem('signup', 'true'); // Set signup status
-                localStorage.setItem('userName', userName); // Store user's name
+                alert('User data saved successfully!');
                 window.location.href = 'index.html';
             }).catch((error) => {
-                console.error('Error saving data to database:', error);
+                alert('Failed to save user data: ' + error.message);
             });
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            var userFriendlyMessage = '';
-
-            switch (errorCode) {
-                case 'auth/operation-not-allowed':
-                    userFriendlyMessage = 'Email/password accounts are not enabled.';
-                    break;
-                case 'auth/missing-email':
-                    userFriendlyMessage = 'An email address is required.';
-                    break;
-                case 'auth/internal-error':
-                    userFriendlyMessage = 'Oops! Something went wrong. Please try again later.';
-                    break;
-                case 'auth/too-many-requests':
-                    userFriendlyMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
-                    break;
-                case 'auth/network-request-failed':
-                    userFriendlyMessage = 'A network error has occurred. Please try again later.';
-                    break;
-                case 'auth/user-disabled':
-                    userFriendlyMessage = 'The user account has been disabled by an administrator.';
-                    break;
-                case 'auth/user-not-found':
-                    userFriendlyMessage = 'The specified user account does not exist.';
-                    break;
-                case 'auth/missing-password':
-                    userFriendlyMessage = 'A password is required.';
-                    break;
-                case 'auth/invalid_login_credentials':
-                    userFriendlyMessage = 'The password is invalid.';
-                    break;
-                case 'auth/invalid-email':
-                    userFriendlyMessage = 'The email address is badly formatted.';
-                    break;
-                default:
-                    userFriendlyMessage = errorMessage; // Use the default Firebase error message if no cases match
-            }
-            alert(userFriendlyMessage);
-        });
+        }
+    }).catch((error) => {
+        alert('Failed to check email or username: ' + error.message);
+    });
 });
-
-if (userCredential && userCredential.user) {
-    // Add your code here
-} else {
-
-
-}
-if (signup = true) {
-    window.location.href = 'verification.html'
-}
