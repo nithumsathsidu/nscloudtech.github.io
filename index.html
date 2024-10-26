@@ -1,0 +1,30 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="CSS/index.css">
+    <<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginStatus = localStorage.getItem('login');
+            const username = localStorage.getItem('username');
+            if (loginStatus === 'true' && username) {
+                document.getElementById('welcome-message').textContent = `Welcome, ${username}`;
+            }
+        });
+    </script>
+</head>
+<body>
+    
+    <div class="header">
+        <img src="logo.jpg" alt="Logo" style="width: 100px; height: auto;">
+        <h1>NScloudtech</h1>
+        <p id="welcome-message"></p>
+    </div>
+    <!-- Rest of your index.html content -->
+    <div class="bottom-text">
+    </div>
+</body>
+</html>
