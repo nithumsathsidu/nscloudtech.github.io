@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="CSS/index.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z09RV5W6VM"></script>
     <script>
+        window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config',  'G-Z09RV5W6VM');
         document.addEventListener('DOMContentLoaded', function() {
             const loginStatus = localStorage.getItem('login');
             const username = localStorage.getItem('username');
@@ -15,11 +20,7 @@
                 document.getElementById('welcome-message').textContent = `Welcome, ${username}`;
             }
         });
-        window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config',  'G-Z09RV5W6VM');
+        
     </script>
 </head>
 <body>
