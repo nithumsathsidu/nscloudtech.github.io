@@ -6,44 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="CSS/index.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z09RV5W6VM"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config',  'G-Z09RV5W6VM');
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginStatus = localStorage.getItem('login');
-            const username = localStorage.getItem('username');
-            if (loginStatus === 'true' && username) {
-                document.getElementById('welcome-message').textContent = `Welcome, ${username}`;
-            }
-        });
-        
-    </script>
+    <!-- Include Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 </head>
 <body>
-    
     <div class="header">
         <img src="logo.jpg" alt="Logo" style="width: 100px; height: auto;">
         <h1>NScloudtech</h1>
         <p id="welcome-message"></p>
     </div>
-    <!-- Rest of your index.html content -->
-    <div class="bottom-text">
-    </div>
+    <!-- Your page content here -->
+
     <script>
-        // Check login status
-        const loginStatus = localStorage.getItem('login');
-        if (loginStatus === 'true') {
-            console.log('User is logged in');
-            alert('User is logged in');
-        } else {
-            console.log('User is not logged in');
-            alert('User is not logged in');
-            window.location.href = 'signin.html';
-        }
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCnlWeo1q5ca85gDL800o-tgzPqcp4QNsc",
+            authDomain: "nscloudtech1.firebaseapp.com",
+            databaseURL: "https://nscloudtech1-default-rtdb.firebaseio.com",
+            projectId: "nscloudtech1",
+            storageBucket: "nscloudtech1.appspot.com",
+            messagingSenderId: "682366385440",
+            appId: "1:682366385440:web:769ac7c6ee00740c132b45",
+            measurementId: "G-Z09RV5W6VM"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Check authentication state
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in
+                var email = user.email;
+                document.getElementById('welcome-message').textContent = `Welcome, ${email}`;
+            } else {
+                // No user is signed in, redirect to signin page
+                window.location.href = '/signin.html';
+            }
+        });
     </script>
 </body>
 </html>
