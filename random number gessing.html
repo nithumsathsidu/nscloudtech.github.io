@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .progress-bar-fill {
+            height: 20px;
+            width: 0;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+        }
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #score {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Number</h1>
+        <p>Guess a number between 1 and 10</p>
+        <input type="number" id="guess" min="1" max="10">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="message"></p>
+        <p id="score">Score: 0</p>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progress-bar-fill">0%</div>
+        </div>
+    </div>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCnlWeo1q5ca85gDL800o-tgzPqcp4QNsc",
+            authDomain: "nscloudtech1.firebaseapp.com",
+            databaseURL: "https://nscloudtech1-default-rtdb.firebaseio.com",
+            projectId: "nscloudtech1",
+            storageBucket: "nscloudtech1.appspot.com",
+            messagingSenderId: "682366385440",
+            appId: "1:682366385440:web:769ac7c6ee00740c132b45",
+            measurementId: "G-Z09RV5W6VM"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        let randomNumber = Math.floor(Math.random() * 10) + 1;
+        let score = 0;
+        let userId = null;
+
+        // Initialize Firebase Authentication and get a reference to the service
+        const auth = firebase.auth();
+
+        // Fetch score from Firebase for authenticated user
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                userId = user.uid;
+                const scoreRef = firebase.database().ref('users/' + userId + '/score');
+                scoreRef.on('value', (snapshot) => {
+                    score = snapshot.val() || 0;
+                    document.getElementById('score').textContent = 'Score: ' + score;
+                    updateProgressBar();
+                });
+            } else {
+                // Redirect to signin.html if not authenticated
+                window.location.href = '/signin.html';
+            }
+        });
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+            const message = document.getElementById('message');
+            const scoreDisplay = document.getElementById('score');
+            const progressBarFill = document.getElementById('progress-bar-fill');
+
+            if (userGuess === randomNumber) {
+                message.textContent = 'Congratulations! You guessed the correct number!';
+                score++;
+                randomNumber = Math.floor(Math.random() * 10) + 1; // Generate a new random number
+                // Update score in Firebase
+                if (userId) {
+                    firebase.database().ref('users/' + userId + '/score').set(score);
+                }
+            } else {
+                message.textContent = 'Try again!';
+            }
+
+            scoreDisplay.textContent = 'Score: ' + score;
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progressBarFill = document.getElementById('progress-bar-fill');
+            const progressPercentage = (score / 10) * 100;
+            progressBarFill.style.width = progressPercentage + '%';
+            progressBarFill.textContent = progressPercentage + '%';
+        }
+    </script>
+</body>
+</html>
