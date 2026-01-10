@@ -1,0 +1,296 @@
+/* ======================================================
+   HAMARIAH GALA NIGHT – ELEMENTOR NAV MENU (REFINED)
+   Matches the reference header across desktop, tablet, mobile
+   Uses ONLY Elementor classes
+====================================================== */
+
+/* ===== NAV CONTAINER ===== */
+.elementor-nav-menu__container {
+    position: relative;
+    background: rgba(7, 16, 41, 0.95);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(200, 155, 74, 0.3);
+    box-shadow: 0 25px 50px -20px rgba(0, 0, 0, 0.55),
+                0 10px 30px -18px rgba(200, 155, 74, 0.3);
+    border-radius: 12px;
+    padding: 14px 16px;
+    overflow: visible;
+}
+
+/* Gradient line + shimmer */
+.elementor-nav-menu__container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(200, 155, 74, 0.25), transparent);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.elementor-nav-menu__container::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #C89B4A, transparent);
+    opacity: 0.6;
+    pointer-events: none;
+    border-radius: 999px;
+}
+
+/* ===== MAIN MENU WRAPPER ===== */
+.elementor-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* gap-1.5 */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.elementor-nav-menu > li {
+    position: relative;
+}
+
+/* ===== TOP LEVEL LINKS ===== */
+.elementor-nav-menu > li > a,
+.elementor-nav-menu > li > .elementor-menu-toggle {
+    color: #F6F1EB !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 10px 14px !important; /* px-3.5 py-2.5 */
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    line-height: 1.35 !important;
+    position: relative !important;
+    background: transparent !important;
+    letter-spacing: 0.01em !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+.elementor-nav-menu > li > a:hover,
+.elementor-nav-menu > li > .elementor-menu-toggle:hover {
+    color: #C89B4A !important;
+    transform: translateY(-1px);
+}
+
+/* ===== DROPDOWN CHEVRON ===== */
+.elementor-menu-toggle .elementor-sub-indicator {
+    margin-left: 4px !important;
+    display: inline-flex !important;
+}
+
+.elementor-menu-toggle .elementor-sub-indicator i {
+    font-size: 14px !important;
+    color: #F6F1EB !important;
+    transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.elementor-nav-menu > li:hover .elementor-menu-toggle .elementor-sub-indicator i {
+    color: #C89B4A !important;
+    transform: rotate(180deg);
+}
+
+/* ===== UNDERLINE EFFECT (NON BUTTON ITEMS) ===== */
+.elementor-nav-menu > li:not(.Menu-Button-1):not(.Menu-Button-2) > a::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    bottom: -2px;
+    width: calc(100% - 24px);
+    height: 2px;
+    background: linear-gradient(to right, #C89B4A, transparent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+}
+
+.elementor-nav-menu > li:not(.Menu-Button-1):not(.Menu-Button-2) > a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ======================================================
+   DROPDOWN MENU (Parent menus)
+====================================================== */
+.elementor-nav-menu--dropdown {
+    background: rgba(10, 20, 53, 0.98) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 155, 74, 0.3) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55) !important;
+    padding: 8px 0 10px !important;
+    min-width: 230px !important;
+    margin-top: 10px !important; /* mt-2.5 */
+    overflow: hidden !important;
+    position: relative;
+    z-index: 1000;
+}
+
+.elementor-nav-menu--dropdown a {
+    color: #F6F1EB !important;
+    font-size: 14px !important;
+    padding: 12px 16px !important; /* px-4 py-3 */
+    line-height: 1.45 !important;
+    display: block !important;
+    border-bottom: 1px solid rgba(200, 155, 74, 0.1) !important;
+    transition: all 0.25s ease !important;
+}
+
+.elementor-nav-menu--dropdown a:hover {
+    color: #C89B4A !important;
+    background-color: rgba(200, 155, 74, 0.12) !important;
+    padding-left: 20px !important;
+}
+
+.elementor-nav-menu--dropdown li:last-child > a {
+    border-bottom: none !important;
+}
+
+/* ======================================================
+   BUY TICKETS BUTTON (Menu-Button-1)
+====================================================== */
+.elementor-nav-menu > li.Menu-Button-1 > a {
+    background: #C89B4A !important;
+    color: #071029 !important;
+    padding: 11px 26px !important; /* px-6.5 py-2.75 */
+    height: 42px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    margin-left: 10px !important;
+    box-shadow: 0 12px 22px -10px rgba(200, 155, 74, 0.45) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 134px !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.elementor-nav-menu > li.Menu-Button-1 > a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+}
+
+.elementor-nav-menu > li.Menu-Button-1 > a:hover::before {
+    transform: translateX(120%);
+}
+
+.elementor-nav-menu > li.Menu-Button-1 > a::after {
+    display: none !important;
+}
+
+/* ======================================================
+   DONATE BUTTON (Menu-Button-2)
+====================================================== */
+.elementor-nav-menu > li.Menu-Button-2 > a {
+    background: linear-gradient(90deg, #D64545, #c03a3a 60%, #D64545) !important;
+    color: #FFFFFF !important;
+    padding: 11px 26px 11px 48px !important;
+    height: 42px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    margin-left: 10px !important;
+    box-shadow: 0 10px 20px -10px rgba(214, 69, 69, 0.45) !important;
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 134px !important;
+    overflow: hidden !important;
+
+    /* reset inherited lines */
+    text-decoration: none !important;
+    border: none !important;
+}
+
+.elementor-nav-menu > li.Menu-Button-2 > a::before {
+    content: "\2665";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    display: block;
+    line-height: 1;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1;
+}
+
+.elementor-nav-menu > li.Menu-Button-2 > a::after,
+.elementor-nav-menu > li.Menu-Button-2::before,
+.elementor-nav-menu > li.Menu-Button-2::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ======================================================
+   MOBILE + TABLET
+====================================================== */
+@media (max-width: 1024px) {
+    .elementor-nav-menu__container {
+        padding: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .elementor-nav-menu:not(.elementor-nav-menu--dropdown) {
+        display: none !important;
+    }
+
+    .elementor-nav-menu--dropdown {
+        width: 320px !important;
+        max-width: 92vw !important;
+        margin-top: 12px !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-height: none !important;
+        pointer-events: auto !important;
+    }
+
+    /* force inner UL to remain rendered when Elementor toggles */
+    .elementor-nav-menu--dropdown.elementor-nav-menu__container {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-height: none !important;
+    }
+
+    .elementor-nav-menu--dropdown a {
+        font-size: 15px !important;
+        padding: 14px 20px !important;
+    }
+
+    .elementor-nav-menu--dropdown li.Menu-Button-1 > a,
+    .elementor-nav-menu--dropdown li.Menu-Button-2 > a {
+        min-width: calc(100% - 40px) !important;
+        margin: 10px 20px !important;
+        padding: 12px 20px !important;
+        justify-content: center !important;
+    }
+
+    .elementor-nav-menu--dropdown li.Menu-Button-2 > a {
+        padding-left: 46px !important;
+    }
+
+    .elementor-nav-menu--dropdown li.Menu-Button-2 > a::before {
+        left: 22px !important;
+    }
+}
