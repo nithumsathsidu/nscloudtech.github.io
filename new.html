@@ -1,10 +1,55 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Container CSS Demo</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: #050915;
+            font-family: "Times New Roman", Times, serif;
+            padding: 24px;
+        }
+
+        .p-8.bg-gradient-to-br.from-\[\#0a1435\].to-\[\#071029\].border-2.border-\[\#C89B4A\]\/30.rounded-xl {
+            padding: 2rem;
+            background: linear-gradient(135deg, #0a1435, #071029);
+            border: 2px solid rgba(200, 155, 74, 0.3);
+            border-radius: 0.75rem;
+            color: #F6F1EB;
+            max-width: 22rem;
+        }
+
+        .text-5xl.font-serif.text-\[\#C89B4A\].mb-4 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 3rem;
+            line-height: 1;
+            color: #C89B4A;
+            margin-bottom: 1rem;
+        }
+
+        .font-serif.text-2xl.text-\[\#F6F1EB\].mb-3 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            color: #F6F1EB;
+            margin-bottom: 0.75rem;
+        }
+
+        .text-\[\#F6F1EB\]\/70 {
+            color: rgba(246, 241, 235, 0.7);
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="p-8 bg-gradient-to-br from-[#0a1435] to-[#071029] border-2 border-[#C89B4A]/30 rounded-xl" style="opacity: 1; transform: none;">
+        <div class="text-5xl font-serif text-[#C89B4A] mb-4">40%</div>
+        <h3 class="font-serif text-2xl text-[#F6F1EB] mb-3">Emergency Relief</h3>
+        <p class="text-[#F6F1EB]/70">Providing immediate assistance to families facing hardship</p>
+    </div>
 </body>
 </html>
