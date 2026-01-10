@@ -261,6 +261,16 @@
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
+        max-height: none !important;
+        pointer-events: auto !important;
+    }
+
+    /* force inner UL to remain rendered when Elementor toggles */
+    .elementor-nav-menu--dropdown.elementor-nav-menu__container {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-height: none !important;
     }
 
     .elementor-nav-menu--dropdown a {
