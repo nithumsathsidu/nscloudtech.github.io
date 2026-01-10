@@ -256,6 +256,9 @@
         width: 320px !important;
         max-width: 92vw !important;
         margin-top: 12px !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .elementor-nav-menu--dropdown a {
